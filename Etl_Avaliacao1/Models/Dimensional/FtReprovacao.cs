@@ -36,7 +36,7 @@ namespace Etl_Avaliacao1.Models.Dimensional
         {
             return data.Count(x =>
             {
-                var aprovadoPorNota = x.Nota > 7;
+                var aprovadoPorNota = x.Nota >= 7;
 
                 var aprovadoPorFalta = (x.Faltas / x.CargaHoraria) * 100 < 25;
 
