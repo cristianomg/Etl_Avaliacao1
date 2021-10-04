@@ -21,6 +21,7 @@ namespace Etl_Avaliacao1
             TransformarCursos(extracao.Cursos);
             TransformarDepartamentos(extracao.Departamentos);
             TransformarDisciplinas(extracao.Disciplinas);
+            TransformarReprovacoes(extracao.Reprovacoes);
         }
         private void TransformarTempo(DataTable data)
         {
@@ -43,7 +44,7 @@ namespace Etl_Avaliacao1
             sw.Start();
             foreach (DataRow d in data.Rows)
             {
-                DmCursos.Add(new DmCurso((int)d[0], (string)d[1]));
+                DmCursos.Add(new DmCurso(Convert.ToInt16(d[0]), (string)d[1]));
             }
             sw.Stop();
 
@@ -57,7 +58,7 @@ namespace Etl_Avaliacao1
             sw.Start();
             foreach (DataRow d in data.Rows)
             {
-                DmDepartamentos.Add(new DmDepartamento((int)d[0], (string)d[1]));
+                DmDepartamentos.Add(new DmDepartamento(Convert.ToInt32(d[0]), (string)d[1]));
             }
             sw.Stop();
 
@@ -88,14 +89,14 @@ namespace Etl_Avaliacao1
             {
                 aux.Add(new Reprovacao
                 {
-                    Semestre = (int) d[0],
-                    IdDisciplina = (int) d[1],
-                    IdDepartamento = (int) d[2],
-                    IdCurso = (int) d[3],
+                    Semestre = Convert.ToInt32(d[0]),
+                    IdDisciplina = Convert.ToInt32(d[1]),
+                    IdDepartamento = Convert.ToInt32(d[2]),
+                    IdCurso = Convert.ToInt32(d[3]),
                     Cotista = ((string) d[4]) == "S",
-                    CargaHoraria = (long) d[5],
-                    Nota = (int) d[6],
-                    Faltas = (int) d[7]
+                    CargaHoraria = Convert.ToInt32(d[5]),
+                    Nota = Convert.ToInt32(d[6]),
+                    Faltas = Convert.ToInt32(d[7])
                 });
             }
 

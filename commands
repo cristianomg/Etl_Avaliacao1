@@ -1,0 +1,10 @@
+docker exec -it db-oracle_oracle-db_1 bash
+mkdir -p -m777 /u01/app/oracle/oradata/XE/dados
+sqlplus
+system
+oracle
+@/scripts/criacao_schema.sql
+@/scripts/tabelas_academico.sql
+@/scripts/inserts_academico.sql
+@/scripts/criacao_dw_user.sql
+@/scripts/criacao_dw_schema.sql

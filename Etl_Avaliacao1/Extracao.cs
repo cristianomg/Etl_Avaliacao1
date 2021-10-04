@@ -133,26 +133,25 @@ namespace Etl_Avaliacao1
 
             OracleCommand commandSQL = connection.CreateCommand();
 
-            commandSQL.CommandText = @"SELECT SEMESTRE,
-                                              D2.COD_DISC,
-                                              D.COD_DPTO,
-                                              A2.COD_CURSO,
-                                              a2.COTISTA,
-                                              CARGA_HORARIA,
-                                              NOTA,
-                                              FALTAS
-                                       FROM MATRICULAS
-                                       JOIN ALUNOS A2 on MATRICULAS.MAT_ALU = A2.MAT_ALU
-                                       JOIN CURSOS C2 on C2.COD_CURSO = A2.CO/D_CURSO
-                                       JOIN DEPARTAMENTOS D on D.COD_DPTO = C2.COD_DPTO
-                                       JOIN DISCIPLINAS D2 on D2.COD_DISC = MATRICULAS.COD_DISC
-";
+            commandSQL.CommandText = @"
+                                       SELECT M.SEMESTRE,
+                                              DIS.COD_DISC as DISCIPLINA,
+                                              DEP.COD_DPTO AS DEPARTAMENTO,
+                                              A.COD_CURSO AS CURSO,
+                                              A.COTISTA AS EHCOSTISTA,
+                                              DIS.CARGA_HORARIA,
+                                              M.NOTA,
+                                              NVL(M.FALTAS, 0)
+                                        FROM MATRICULAS M
+                                        JOIN ALUNOS A on M.MAT_ALU = A.MAT_ALU
+                                        JOIN CURSOS C on C.COD_CURSO = A.COD_CURSO
+                                        JOIN DEPARTAMENTOS DEP on DEP.COD_DPTO = C.COD_DPTO
+                                        JOIN DISCIPLINAS DIS on DIS.COD_DISC = M.COD_DISC";
 
             commandSQL.CommandType = CommandType.Text;
 
             OracleDataReader dr = commandSQL.ExecuteReader();
-
-            Disciplinas.Load(dr);
+            Reprovacoes.Load(dr);
             connection.Close();
             sw.Stop();
 

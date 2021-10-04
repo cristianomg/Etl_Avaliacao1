@@ -13,7 +13,7 @@ namespace Etl_Avaliacao1.Models.Operacional
         public int IdDisciplina { get; set; }
         public int IdCurso { get; set; }
         public bool Cotista { get; set; }
-        public long CargaHoraria { get; set; }
+        public int CargaHoraria { get; set; }
         public int Nota { get; set; }
         public int Faltas { get; set; }
     }
