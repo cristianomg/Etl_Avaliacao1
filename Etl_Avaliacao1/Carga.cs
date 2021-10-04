@@ -229,7 +229,7 @@ namespace Etl_Avaliacao1
         }
         private void CarregarReprovacoes(List<FtReprovacao> ft, OracleConnection connection)
         {
-            Console.WriteLine("Iniciando carregamento das disciplinas");
+            Console.WriteLine("Iniciando carregamento das reprovações");
             var sw = new Stopwatch();
             sw.Start();
             connection.Open();
@@ -258,7 +258,7 @@ namespace Etl_Avaliacao1
 
             connection.Close();
             sw.Stop();
-            Console.WriteLine($"Finalizando carregamento das disciplinas" +
+            Console.WriteLine($"Finalizando carregamento das reprovações" +
                               $" - Tempo de carregamento: {sw.Elapsed.TotalSeconds}");
         }
     }
