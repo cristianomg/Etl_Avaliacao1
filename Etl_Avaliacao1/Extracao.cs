@@ -94,7 +94,7 @@ namespace Etl_Avaliacao1
             sw.Stop();
 
             Console.WriteLine($"Finalizando extração dos departamentos" +
-                              $" - Total extraido: {Disciplinas.Rows.Count}" +
+                              $" - Total extraido: {Departamentos.Rows.Count}" +
                               $" - Tempo de extração: {sw.Elapsed.TotalSeconds} segundos.");
 
         }
